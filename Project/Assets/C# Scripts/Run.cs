@@ -21,15 +21,15 @@ public class Run : MonoBehaviour {
 
     void Movement()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(Vector2.right * 3f * Time.deltaTime);
-            transform.eulerAngles = new Vector2(0, 0);
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Translate(Vector2.right * 3f * Time.deltaTime);
-            transform.eulerAngles = new Vector2(0, -180);
-        }
+        //if (Input.GetKey(KeyCode.RightArrow))
+        //{
+        //    transform.Translate(Vector2.right * 3f * Time.deltaTime);
+        //    transform.eulerAngles = new Vector2(0, 0);
+        //}
+        //if (Input.GetKey(KeyCode.LeftArrow))
+        //{
+        //    transform.Translate(Vector2.right * 3f * Time.deltaTime);
+        //    transform.eulerAngles = new Vector2(0, -180);
+        //}
     }
 }
