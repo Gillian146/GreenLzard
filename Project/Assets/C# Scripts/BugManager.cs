@@ -19,43 +19,12 @@ public class BugManager : MonoBehaviour {
     int spawned = 0;
     bool spawning;
 
-    //public float minTime = 1f;
-    //public float maxTime = 10f;
-    ////public float minX = -5.5f;
-    ////public float maxX = -5.5f;
-    ////public float topY = 4.5f;
-    ////public float z = 0.0f;
-    //public int count = 10;
-    ////public GameObject prefab;
-    //public bool doSpawn = true;
-
-    //void Start()
-    //{
-    //    Bugs = new List<GameObject>();
-    //    targetPosition = GameObject.FindGameObjectWithTag("BugZapper").transform.position;
-    //    speed = 0.1f;
-    //    StartCoroutine(Spawner());
-    //}
-
-    // IEnumerator Spawner()
-    //{
-    //    while (doSpawn && count > 0)
-    //    {
-    //        Vector3 v = new Vector3(-0.63f, 0.53f, 1);
-    //        Instantiate(bugPrefab);
-    //        count--;
-    //        yield return new WaitForSeconds(UnityEngine.Random.Range(minTime, maxTime));
-    //    }
-    //}
-
-
     void Start()
     {
         Bugs = new List<GameObject>();
         targetPosition = GameObject.FindGameObjectWithTag("BugZapper").transform.position;
         speed = 0.1f;
-        rnd = new System.Random();
-        
+        rnd = new System.Random();  
     }
 
     IEnumerator BugTimer(Vector3 pos, GameObject bug, Vector3 rotation)
@@ -73,7 +42,6 @@ public class BugManager : MonoBehaviour {
         if(spawned < spawnAmount && !spawning)
         {
             int number = rnd.Next(1, 3);
-            Debug.Log(number);
             if (number % 2 == 0)
             {
                 StartCoroutine(BugTimer(new Vector3(-0.63f, 0.53f, 1), Bug, new Vector3(0, 0, 0)));
@@ -82,8 +50,6 @@ public class BugManager : MonoBehaviour {
             }
             else
             {
-                
-                //Bug.transform.Rotate(new Vector3(0, 180, 0));
                 StartCoroutine(BugTimer(new Vector3(0.63f, 0.53f, 1), Bug, new Vector3(0, 180, 0)));
                 spawned++;
                 spawning = true;
@@ -96,5 +62,10 @@ public class BugManager : MonoBehaviour {
             previousPosition = Bug.transform.position;
             Bug.transform.position = Vector3.MoveTowards(previousPosition, targetPosition, step);
         }
+    }
+
+    public void KillBug(Collider2D bug)
+    {
+        bug.gameObject.SetActive(false);
     }
 }

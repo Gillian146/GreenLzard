@@ -12,10 +12,9 @@ public class Run : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Movement();
         {
-            float move = Input.GetAxis("Horizontal");
-            anim.SetFloat("Speed", move);
+            //float move = Input.GetAxis("Horizontal");
+            //anim.SetFloat("Speed", move);
         }
 	}
 
