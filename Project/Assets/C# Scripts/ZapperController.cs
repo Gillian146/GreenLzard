@@ -20,12 +20,9 @@ public class ZapperController : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name == "Bug")
+        if (other.gameObject.tag == "Bug")
         {
             deathSound.Play();
-            GameObject deadBug =  other.gameObject;
-            //deadBug.Gravity
-            //deadBug.SetActive(false);
             bugManager.KillBug(other);
         }
     }
