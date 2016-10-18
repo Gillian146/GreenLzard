@@ -14,6 +14,7 @@ public class BugManager : MonoBehaviour {
     Vector3 targetPosition;
     int spawned = 0;
     bool spawning;
+	public float minusHealth;
 
     // Health Bar
     public float barDisplay; //current progress
@@ -65,7 +66,13 @@ public class BugManager : MonoBehaviour {
             previousPosition = Bug.transform.position;
             Bug.transform.position = Vector3.MoveTowards(previousPosition, targetPosition, step);
         }
-        barDisplay = Time.time * 0.05f;
+        //barDisplay = Time.time * 0.05f;
+		barDisplay += 0.0005f;
+		if (barDisplay > 1) {
+			barDisplay = 1;
+		}
+
+		Debug.Log (barDisplay);
     }
 
     public void KillBug(Collider2D bug)
@@ -74,6 +81,7 @@ public class BugManager : MonoBehaviour {
         rb.gravityScale = 0.2f;
         Animator anim = bug.gameObject.GetComponent<Animator>();
         anim.SetBool("Dead", true);
+		barDisplay -= minusHealth;
     }
 
     void OnGUI()
@@ -88,4 +96,5 @@ public class BugManager : MonoBehaviour {
         GUI.EndGroup();
         GUI.EndGroup();
     }
+
 }
