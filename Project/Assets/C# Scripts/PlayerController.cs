@@ -3,21 +3,23 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+    private ScoreManager sm;
+
+    // Use this for initialization
+    void Start () {
+        sm = FindObjectOfType<ScoreManager>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Bug")
         {
-
+            sm.score -= 50;
         }
     }
 }

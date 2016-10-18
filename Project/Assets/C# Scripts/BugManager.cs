@@ -71,9 +71,20 @@ public class BugManager : MonoBehaviour {
     public void KillBug(Collider2D bug)
     {
         Rigidbody2D rb = bug.gameObject.GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0.2f;
+        rb.gravityScale = 1.0f;
         Animator anim = bug.gameObject.GetComponent<Animator>();
         anim.SetBool("Dead", true);
+        //StartCoroutine(DestroyBugTimer(bug.gameObject));
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Lizard")
+        {
+            Vector2 dir = new Vector2(UnityEngine.Random.Range(-50.0f, 50.0f), UnityEngine.Random.Range(0f, 50.0f));
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            rb.velocity = dir;
+        }
     }
 
     void OnGUI()
@@ -88,4 +99,10 @@ public class BugManager : MonoBehaviour {
         GUI.EndGroup();
         GUI.EndGroup();
     }
+
+    //IEnumerator DestroyBugTimer(GameObject bug)
+    //{
+    //    yield return new WaitForSeconds(2);
+    //    Destroy(bug);
+    //}
 }
