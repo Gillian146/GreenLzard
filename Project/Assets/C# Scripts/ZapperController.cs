@@ -26,7 +26,6 @@ public class ZapperController : MonoBehaviour {
             deathSound.Play();
             bugManager.KillBug(other);
 			sm.score += 10;
-
         }
     }
 }
